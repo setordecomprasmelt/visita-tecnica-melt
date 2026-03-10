@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melt Service — Checklist de Visita Técnica</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #0e2818;
+    --verde-medio: #1a4028;
+    --verde-claro: #2d6a45;
+    --verde-neon: #5cc47a;
+    --verde-suave: #e8f5ec;
+    --verde-borda: #c2deca;
+    --branco: #ffffff;
+    --cinza-texto: #4a6358;
+    --cinza-leve: #f4faf6;
+    --laranja: #e07b3a;
+    --vermelho: #d94f4f;
+    --azul: #3a7ab8;
+    --amarelo: #d4a017;
+    --roxo: #7a4db8;
+    --teal: #2d8a7a;
+  }
+
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: #0a1f10;
+    min-height: 100vh;
+    color: #1a3320;
+  }
+
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--verde-escuro) 0%, #163324 50%, #0e2818 100%);
+    padding: 20px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid rgba(92,196,122,0.3);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--verde-neon);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--verde-escuro);
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+
+
+  .logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 4px;
+  }
+
+
+  .header-title {
+    margin-left: auto;
+    background: rgba(92,196,122,0.15);
+    border: 1px solid rgba(92,196,122,0.3);
+    border-radius: 50px;
+    padding: 6px 16px;
+    color: var(--verde-neon);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+
+  /* MAIN CONTENT */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 16px 100px;
+  }
+
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    height: 4px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--verde-neon), #88e4a0);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+
+  /* BLOCO */
+  .bloco {
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 1px solid var(--verde-borda);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    animation: fadeIn 0.3s ease;
+  }
+
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+
+  .bloco-header {
+    background: linear-gradient(135deg, var(--verde-medio), var(--verde-claro));
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+
+  .bloco-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+
+  .bloco-titulo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+
+  .bloco-subtitulo {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 2px;
+  }
+
+
+  .bloco-body {
+    padding: 24px;
+  }
+
+
+  /* ÁREA CHIPS */
+  .area-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+
+  .area-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 50px;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+    user-select: none;
+    background: white;
+  }
+
+
+  .area-chip:hover { transform: translateY(-1px); }
+  .area-chip.ativo { color: white; border-color: transparent; }
+
+
+  .area-chip[data-area="fertilizante"].ativo { background: linear-gradient(135deg, #3a9a5a, #5cc47a); }
+  .area-chip[data-area="portuario"].ativo { background: linear-gradient(135deg, #2060a0, #3a7ab8); }
+  .area-chip[data-area="mecanica"].ativo { background: linear-gradient(135deg, #b05a20, #e07b3a); }
+  .area-chip[data-area="eletrica"].ativo { background: linear-gradient(135deg, #b09020, #d4a017); }
+  .area-chip[data-area="civil"].ativo { background: linear-gradient(135deg, #6a3090, #9a60c0); }
+  .area-chip[data-area="agroquimico"].ativo { background: linear-gradient(135deg, #207060, #2d8a7a); }
+  .area-chip[data-area="mineracao"].ativo { background: linear-gradient(135deg, #808080, #a0a0a0); }
+
+
+  /* CHECKLIST DINAMICO */
+  .checklist-area {
+    display: none;
+    margin-top: 20px;
+    border-top: 2px solid var(--verde-borda);
+    padding-top: 20px;
+  }
+
+
+  .checklist-area.visivel { display: block; animation: fadeIn 0.3s ease; }
+
+
+  .checklist-area-titulo {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+
+  /* CHECKLIST ITEMS */
+  .check-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--verde-borda);
+    margin-bottom: 16px;
+  }
+
+
+  .check-row {
+    display: grid;
+    grid-template-columns: 1fr 90px 90px 90px;
+    align-items: center;
+    background: white;
+    border-bottom: 1px solid #edf5f0;
+    transition: background 0.15s;
+  }
+
+
+  .check-row:last-child { border-bottom: none; }
+  .check-row:hover { background: var(--verde-suave); }
+
+
+  .check-row.header-row {
+    background: var(--verde-escuro);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+
+
+  .check-row.header-row .check-label { color: rgba(255,255,255,0.5); }
+
+
+  .check-label {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #2a4a38;
+    font-weight: 500;
+  }
+
+
+  .check-opcoes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 4px;
+  }
+
+
+  .check-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+  }
+
+
+  .check-btn:hover { transform: scale(1.1); }
+  .check-btn.sim.ativo { background: var(--verde-neon); border-color: var(--verde-claro); color: white; }
+  .check-btn.nao.ativo { background: var(--vermelho); border-color: #b03030; color: white; }
+  .check-btn.na.ativo { background: #ccc; border-color: #999; color: white; }
+
+
+  /* CAMPOS */
+  .campo-grupo {
+    margin-bottom: 16px;
+  }
+
+
+  .campo-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cinza-texto);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+
+  .campo-label .obrig { color: var(--vermelho); margin-left: 2px; }
+
+
+  .campo-input,
+  .campo-select,
+  .campo-textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #e0ebe4;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'Barlow', sans-serif;
+    color: #1a3320;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+  }
+
+
+  .campo-input:focus,
+  .campo-select:focus,
+  .campo-textarea:focus {
+    outline: none;
+    border-color: var(--verde-neon);
+    box-shadow: 0 0 0 3px rgba(92,196,122,0.15);
+  }
+
+
+  .campo-input.erro,
+  .campo-select.erro,
+  .campo-textarea.erro {
+    border-color: var(--vermelho);
+    box-shadow: 0 0 0 3px rgba(217,79,79,0.1);
+  }
+
+
+  .campo-textarea { min-height: 90px; resize: vertical; }
+  .campo-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a6358' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+
+  @media (max-width: 600px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .check-row { grid-template-columns: 1fr 72px 72px 72px; }
+    .check-label { font-size: 12px; padding: 8px 10px; }
+  }
+
+
+  /* CARDS DE ITEMS (materiais / mão de obra) */
+  .items-lista { display: flex; flex-direction: column; gap: 12px; }
+
+
+  .item-card {
+    background: var(--cinza-leve);
+    border: 1px solid var(--verde-borda);
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    animation: fadeIn 0.2s ease;
+  }
+
+
+  .item-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+
+  .item-numero {
+    background: var(--verde-medio);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 50px;
+    letter-spacing: 1px;
+  }
+
+
+  .item-remover {
+    background: none;
+    border: 1px solid #ffcccc;
+    color: var(--vermelho);
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+
+  .item-remover:hover { background: #fff0f0; }
+
+
+  /* FOTOS */
+  .fotos-area {
+    border: 2px dashed var(--verde-borda);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--cinza-leve);
+  }
+
+
+  .fotos-area:hover { border-color: var(--verde-neon); background: #edfaf1; }
+  .fotos-area input { display: none; }
+
+
+  .fotos-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+
+  .foto-thumb {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--verde-borda);
+  }
+
+
+  .foto-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+
+  .foto-thumb .remover-foto {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  /* BTN ADICIONAR */
+  .btn-adicionar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: 2px dashed var(--verde-claro);
+    border-radius: 10px;
+    background: none;
+    color: var(--verde-claro);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    justify-content: center;
+    margin-top: 12px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+
+  .btn-adicionar:hover { background: var(--verde-suave); border-color: var(--verde-neon); color: var(--verde-escuro); }
+
+
+  /* ASSINATURA */
+  .assinatura-canvas {
+    width: 100%;
+    height: 160px;
+    border: 2px solid var(--verde-borda);
+    border-radius: 12px;
+    background: var(--cinza-leve);
+    cursor: crosshair;
+    touch-action: none;
+  }
+
+
+  .assinatura-canvas.signed { background: white; }
+
+
+  .btn-limpar-assinatura {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: #888;
+    cursor: pointer;
+    margin-top: 8px;
+    font-family: 'Barlow', sans-serif;
+    transition: all 0.2s;
+  }
+
+
+  .btn-limpar-assinatura:hover { border-color: var(--vermelho); color: var(--vermelho); }
+
+
+  /* SUBMIT */
+  .submit-area {
+    background: linear-gradient(135deg, var(--verde-escuro), var(--verde-medio));
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-top: 24px;
+  }
+
+
+  .btn-enviar {
+    background: linear-gradient(135deg, var(--verde-neon), #44b068);
+    color: var(--verde-escuro);
+    border: none;
+    padding: 16px 48px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 800;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(92,196,122,0.3);
+  }
+
+
+  .btn-enviar:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(92,196,122,0.4); }
+  .btn-enviar:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+
+  .submit-text {
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    margin-top: 12px;
+  }
+
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, #1a4028, #2d6a45);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 1000;
+    border: 1px solid rgba(92,196,122,0.4);
+  }
+
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+
+  /* SEÇÃO OBSERVAÇÃO INLINE */
+  .obs-inline {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--cinza-texto);
+    font-style: italic;
+  }
+
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--verde-borda);
+    margin: 20px 0;
+  }
+
+
+  /* AVISO */
+  .aviso {
+    background: #fff8e8;
+    border: 1px solid #f0d080;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #7a5a10;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+
+  /* UTILS */
+  .texto-ajuda { font-size: 11px; color: #8aab98; margin-top: 4px; }
+  .badge-area { display: inline-flex; align-items: center; gap: 6px; background: var(--verde-suave); border: 1px solid var(--verde-borda); border-radius: 50px; padding: 4px 12px; font-size: 12px; font-weight: 600; color: var(--verde-claro); margin-bottom: 12px; }
+</style>
+</head>
+<body>
+
+
+<div class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">✕</div>
+      <div class="logo-text">MELT</div>
+    </div>
+    <div class="header-title">Checklist de Visita Técnica</div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+
+  <!-- BLOCO 1: IDENTIFICAÇÃO -->
+  <div class="bloco">
+    <div class="bloco-header">
+      class="bloco-icon">📋
+      <div>
+        <div class="bloco-titulo">Identificação da Visita</div>
+        <div class="bloco-subtitulo">Dados gerais da visita técnica</div>
+      </div>
+    </div>
+    <div class="bloco-body">
+      <div class="grid-2">
+        <div class="campo-grupo">
+          <label class="campo-label">Empresa / Cliente class="obrig">*</label>
+          <input type="text" class="campo-input" id="cliente" placeholder="Nome da empresa cliente">
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-label">Unidade / Planta class="obrig">*</label>
+          <input type="text" class="campo-input" id="unidade" placeholder="Unidade ou nome da planta">
+        </div>
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label">Endereço completo com CEP class="obrig">*</label>
+        <input type="text" class="campo-input" id="endereco" placeholder="Rua, número, cidade, estado, CEP">
+      </div>
+      <div class="grid-3">
+        <div class="campo-grupo">
+          <label class="campo-label">Data da Visita class="obrig">*</label>
+          <input type="date" class="campo-input" id="dataVisita">
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-label">Responsável Melt class="obrig">*</label>
+          <input type="text" class="campo-input" id="respMelt" placeholder="Nome do técnico/vendedor">
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-label">Email do Responsável class="obrig">*</label>
+          <input type="email" class="campo-input" id="emailResp" placeholder="[email protected]">
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="campo-grupo">
+          <label class="campo-label">Contato do Cliente (Nome) class="obrig">*</label>
+          <input type="text" class="campo-input" id="contatoCliente" placeholder="Nome do responsável técnico local">
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-label">Telefone do Contato</label>
+          <input type="tel" class="campo-input" id="telContato" placeholder="(00) 00000-0000">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- BLOCO 2: ÁREA DO PROJETO -->
+  <div class="bloco">
+    <div class="bloco-header">
+      class="bloco-icon">🏭
+      <div>
+        <div class="bloco-titulo">Segmento / Área do Projeto</div>
+        <div class="bloco-subtitulo">Selecione todas as áreas envolvidas — o checklist se adapta</div>
+      </div>
+    </div>
+    <div class="bloco-body">
+      <div class="area-chips" id="areaChips">
+        <div class="area-chip" data-area="fertilizante" onclick="toggleArea(this)">🌱 Fertilizante / Ensaque</div>
+        <div class="area-chip" data-area="portuario" onclick="toggleArea(this)">⚓ Portuário</div>
+        <div class="area-chip" data-area="mecanica" onclick="toggleArea(this)">⚙️ Eng. Mecânica / Fabricação</div>
+        <div class="area-chip" data-area="eletrica" onclick="toggleArea(this)">⚡ Elétrica / Automação</div>
+        <div class="area-chip" data-area="civil" onclick="toggleArea(this)">🏗️ Civil / Estrutural</div>
+        <div class="area-chip" data-area="agroquimico" onclick="toggleArea(this)">🧪 Agroquímicos</div>
+        <div class="area-chip" data-area="mineracao" onclick="toggleArea(this)">⛏️ Mineração</div>
+      </div>
+
+
+      <!-- CHECKLIST FERTILIZANTE -->
+      <div class="checklist-area" id="cl-fertilizante">
+        <div class="checklist-area-titulo" style="color:#3a9a5a">🌱 Fertilizante / Ensaque e Mistura</div>
+        <div class="check-grid">
+          <div class="check-row header-row">
+            <div class="check-label">Item</div>
+            <div class="check-opcoes">Sim</div>
+            <div class="check-opcoes">Não</div>
+            <div class="check-opcoes">N/A</div>
+          </div>
+          <div id="checks-fertilizante"></div>
+        </div>
+        <div class="grid-3">
+          <div class="campo-grupo">
+            <label class="campo-label">Tipo de equipamento principal</label>
+            <select class="campo-select" id="fert-equipamento">
+              <option value="">Selecione...</option>
+              <option>Ensacadeira</option>
+              <option>Misturador</option>
+              <option>Correia transportadora</option>
+              <option>Elevador de canecas</option>
+              <option>Sugador</option>
+              <option>Silo</option>
+              <option>Big Bag</option>
+              <option>Moega</option>
+              <option>Peneira</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="campo-grupo">
+            <label class="campo-label">Capacidade produtiva (t/h)</label>
+            <input type="text" class="campo-input" id="fert-capacidade" placeholder="Ex: 200 t/h">
+          </div>
+          <div class="campo-grupo">
+            <label class="campo-label">Produto manuseado</label>
+            <input type="text" class="campo-input" id="fert-produto" placeholder="Ex: NPK granulado">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="campo-grupo">
+            <label class="campo-label">Condições ambientais</label>
+            <input type="text" class="campo-input" id="fert-ambiente" placeholder="Poeira, umidade, corrosão...">
+          </div>
+          <div class="campo-grupo">
+            <label class="campo-label">Normas internas da planta</label>
+            <input type="text" class="campo-input" id="fert-normas" placeholder="NR 12, regulamentos próprios...">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- CHECKLIST PORTUARIO -->
+      <div class="checklist-area" id="cl-portuario">
+        <div class="checklist-area-titulo" style="color:#3a7ab8">⚓ Portuário</div>
+        <div class="check-grid">
+          <div class="check-row header-row">
+            <div class="check-label">Item</div>
+            <div class="check-opcoes">Sim</div>
+            <div class="check-opcoes">Não</div>
+            <div class="check-opcoes">N/A</div>
+          </div>
+          <div id="checks-portuario"></div>
+        </div>
+        <div class="grid-3">
+          <div class="campo-grupo">
+            <label class="campo-label">Tipo de equipamento</label>
+            <select class="campo-select" id="port-equipamento">
+              <option value="">Selecione...</option>
+              <option>Grab (Garra)</option>
+              <option>Spreader</option>
+              <option>Moega portuária</option>
+              <option>Correia de cais</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="campo-grupo">
+            <label class="campo-label">Capacidade (ton)</label>
+            <input type="text" class="campo-input" id="port-capacidade" placeholder="Ex: 120 ton">
+          </div>
+          <div class="campo-grupo">
+            <label class="campo-label">Carga manuseada</label>
+            <input type="text" class="campo-input" id="port-carga" placeholder="Ex: fertilizante, grãos...">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- CHECKLIST MECANICA -->
+      <div class="checklist-area" id="cl-mecanica">
+        <div class="checklist-area-titulo" style="color:#e07b3a">⚙️ Engenharia Mecânica / Fabricação</div>
+        <div class="check-grid">
+          <div class="check-row header-row">
+            <div class="check-label">Item</div>
+            <div class="check-opcoes">Sim</div>
+            <div class="check-opcoes">Não</div>
+            <div class="check-opcoes">N/A</div>
+          </div>
+          <div id="checks-mecanica"></div>
+        </div>
+        <div class="grid-2">
+          <div class="campo-grupo">
+            <label class="campo-label">Tipo de serviço</label>
+            <select class="campo-select" id="mec-servico">
+              <option value="">Selecione...</option>
+              <option>Desmontagem</option>
+              <option>Montagem</option>
+              <option>Reforma / Recuperação</option>
+              <option>Fabricação nova</option>
+              <option>Manutenção preventiva</option>
+              <option>Manutenção corretiva</option>
+              <option>Projeto + Execução (Turn Key)</option>
+            </select>
+          </div>
+          <div class="campo-grupo">
+            <label class="campo-label">Equipamento / Maquinário envolvido</label>
+            <input type="text" class="campo-input" id="mec-equipamento" placeholder="Descreva o equipamento">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- CHECKLIST ELETRICA -->
+      <div class="checklist-area" id="cl-eletrica">
+        <div class="checklist-area-titulo" style="color:#d4a017">⚡ Elétrica / Automação</div>
+        <div class="check-grid">
+          <div class="check-row header-row">
+            <div class="check-label">Item</div>
+            <div class="check-opcoes">Sim</div>
+            <div class="check-opcoes">Não</div>
+            <div class="check-opcoes">N/A</div>
+          </div>
+          <div id="checks-eletrica"></div>
+        </div>
+      </div>
+
+
+      <!-- CHECKLIST CIVIL -->
+      <div class="checklist-area" id="cl-civil">
+        <div class="checklist-area-titulo" style="color:#9a60c0">🏗️ Civil / Estrutural</div>
+        <div class="check-grid">
+          <div class="check-row header-row">
+            <div class="check-label">Item</div>
+            <div class="check-opcoes">Sim</div>
+            <div class="check-opcoes">Não</div>
+            <div class="check-opcoes">N/A</div>
+          </div>
+          <div id="checks-civil"></div>
+        </div>
+      </div>
+
+
+      <!-- CHECKLIST AGROQUIMICO -->
+      <div class="checklist-area" id="cl-agroquimico">
+        <div class="checklist-area-titulo" style="color:#2d8a7a">🧪 Agroquímicos / Agrodefensivos</div>
+        <div class="check-grid">
+          <div class="check-row header-row">
+            <div class="check-label">Item</div>
+            <div class="check-opcoes">Sim</div>
+            <div class="check-opcoes">Não</div>
+            <div class="check-opcoes">N/A</div>
+          </div>
+          <div id="checks-agroquimico"></div>
+        </div>
+      </div>
+
+
+      <!-- CHECKLIST MINERACAO -->
+      <div class="checklist-area" id="cl-mineracao">
+        <div class="checklist-area-titulo" style="color:#909090">⛏️ Mineração</div>
+        <div class="check-grid">
+          <div class="check-row header-row">
+            <div class="check-label">Item</div>
+            <div class="check-opcoes">Sim</div>
+            <div class="check-opcoes">Não</div>
+            <div class="check-opcoes">N/A</div>
+          </div>
+          <div id="checks-mineracao"></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <!-- BLOCO 3: PROCESSO GERAL E SEGURANÇA -->
+  <div class="bloco">
+    <div class="bloco-header">
+      class="bloco-icon">⚠️
+      <div>
+        <div class="bloco-titulo">Processo, Segurança & Utilidades</div>
+        <div class="bloco-subtitulo">Condições gerais do local</div>
+      </div>
+    </div>
+    <div class="bloco-body">
+      <div class="check-grid">
+        <div class="check-row header-row">
+          <div class="check-label">Item</div>
+          <div class="check-opcoes">Sim</div>
+          <div class="check-opcoes">Não</div>
+          <div class="check-opcoes">N/A</div>
+        </div>
+        <div id="checks-geral"></div>
+      </div>
+      <div class="divider"></div>
+      <div class="campo-grupo">
+        <label class="campo-label">Outros riscos identificados</label>
+        <textarea class="campo-textarea" id="outrosRiscos" placeholder="Descreva qualquer risco adicional observado durante a visita..."></textarea>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- BLOCO 4: LOGÍSTICA E ACESSO -->
+  <div class="bloco">
+    <div class="bloco-header">
+      class="bloco-icon">🚛
+      <div>
+        <div class="bloco-titulo">Logística, Acesso & Equipamentos</div>
+        <div class="bloco-subtitulo">Necessidades de acesso e movimentação</div>
+      </div>
+    </div>
+    <div class="bloco-body">
+      <div class="check-grid">
+        <div class="check-row header-row">
+          <div class="check-label">Item</div>
+          <div class="check-opcoes">Sim</div>
+          <div class="check-opcoes">Não</div>
+          <div class="check-opcoes">N/A</div>
+        </div>
+        <div id="checks-logistica"></div>
+      </div>
+      <div class="divider"></div>
+      <div class="grid-3">
+        <div class="campo-grupo">
+          <label class="campo-label">Capacidade do guindaste (ton)</label>
+          <input type="text" class="campo-input" id="cap-guindaste" placeholder="Ex: 120 ton">
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-label">Altura livre disponível (m)</label>
+          <input type="text" class="campo-input" id="altura-livre" placeholder="Ex: 8 m">
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-label">Restrição de horário</label>
+          <input type="text" class="campo-input" id="restr-horario" placeholder="Ex: 06h às 22h, seg-sex">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- BLOCO 5: MATERIAIS -->
+  <div class="bloco">
+    <div class="bloco-header">
+      class="bloco-icon">🔩
+      <div>
+        <div class="bloco-titulo">Materiais Estimados</div>
+        <div class="bloco-subtitulo">Adicione somente os materiais que serão necessários</div>
+      </div>
+    </div>
+    <div class="bloco-body">
+      <div class="items-lista" id="materiais-lista"></div>
+      <button class="btn-adicionar" onclick="addMaterial()">+ Adicionar Material</button>
+    </div>
+  </div>
+
+
+  <!-- BLOCO 6: MÃO DE OBRA -->
+  <div class="bloco">
+    <div class="bloco-header">
+      class="bloco-icon">👷
+      <div>
+        <div class="bloco-titulo">Mão de Obra Estimada</div>
+        <div class="bloco-subtitulo">Adicione somente as funções necessárias para este projeto</div>
+      </div>
+    </div>
+    <div class="bloco-body">
+      <div class="items-lista" id="mdo-lista"></div>
+      <button class="btn-adicionar" onclick="addMaodeObra()">+ Adicionar Função</button>
+    </div>
+  </div>
+
+
+  <!-- BLOCO 7: FOTOS -->
+  <div class="bloco">
+    <div class="bloco-header">
+      class="bloco-icon">📷
+      <div>
+        <div class="bloco-titulo">Fotos da Visita</div>
+        <div class="bloco-subtitulo">Registros fotográficos do local e equipamentos</div>
+      </div>
+    </div>
+    <div class="bloco-body">
+      <label class="fotos-area" for="fotos-input">
+        <input type="file" id="fotos-input" multiple accept="image/*" onchange="addFotos(this)">
+        <div style="font-size:32px;margin-bottom:8px">📸</div>
+        <div style="font-weight:700;color:#2d6a45;font-size:14px">Toque para adicionar fotos</div>
+        <div class="texto-ajuda" style="margin-top:4px">JPG, PNG — múltiplas fotos permitidas</div>
+      </label>
+      <div class="fotos-preview" id="fotos-preview"></div>
+    </div>
+  </div>
+
+
+  <!-- BLOCO 8: PROJETO E DESCRIÇÃO -->
+  <div class="bloco">
+    <div class="bloco-header">
+      class="bloco-icon">📝
+      <div>
+        <div class="bloco-titulo">Descrição do Projeto</div>
+        <div class="bloco-subtitulo">Detalhes técnicos e escopo observado</div>
+      </div>
+    </div>
+    <div class="bloco-body">
+      <div class="campo-grupo">
+        <label class="campo-label">Motivo do orçamento / Escopo do projeto class="obrig">*</label>
+        <textarea class="campo-textarea" id="descricao" style="min-height:120px" placeholder="Descreva detalhadamente o que será executado: desmontagem, montagem, fabricação, reforma... Quanto mais detalhado, melhor para o orçamento."></textarea>
+      </div>
+      <div class="grid-2">
+        <div class="campo-grupo">
+          <label class="campo-label">Tempo estimado de execução</label>
+          <input type="text" class="campo-input" id="tempo-exec" placeholder="Ex: 60 dias úteis">
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-label">Regime de trabalho</label>
+          <select class="campo-select" id="regime">
+            <option value="">Selecione...</option>
+            <option>Segunda a sexta</option>
+            <option>Segunda a sábado</option>
+            <option>Regime 24h</option>
+            <option>Fins de semana apenas</option>
+            <option>A definir</option>
+          </select>
+        </div>
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label">Pendências de informação</label>
+        <textarea class="campo-textarea" id="pendencias" placeholder="O que faltou saber? Quais informações precisam ser solicitadas ao cliente?"></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label">Observações gerais da visita</label>
+        <textarea class="campo-textarea" id="observacoes" placeholder="Qualquer informação adicional relevante para o orçamento..."></textarea>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- BLOCO 9: ASSINATURA -->
+  <div class="bloco">
+    <div class="bloco-header">
+      class="bloco-icon">✍️
+      <div>
+        <div class="bloco-titulo">Assinatura do Técnico Responsável</div>
+        <div class="bloco-subtitulo">Confirme o preenchimento com sua assinatura</div>
+      </div>
+    </div>
+    <div class="bloco-body">
+      <canvas class="assinatura-canvas" id="assinaturaCanvas" width="800" height="160"></canvas>
+      <button class="btn-limpar-assinatura" onclick="limparAssinatura()">🗑️ Limpar assinatura</button>
+      <div class="texto-ajuda" style="margin-top:8px">Use o dedo ou mouse para assinar no espaço acima</div>
+    </div>
+  </div>
+
+
+  <!-- SUBMIT -->
+  <div class="submit-area">
+    <button class="btn-enviar" id="btnEnviar" onclick="enviarFormulario()">
+      📤 ENVIAR CHECKLIST
+    </button>
+    <div class="submit-text">O relatório chegará imediatamente ao setor de orçamento</div>
+  </div>
+
+
+</div>
+
+
+<div class="toast" id="toast">✅ Checklist enviado com sucesso!</div>
+
+
+<script>
+// ============================================================
+// DADOS DOS CHECKLISTS POR ÁREA
+// ============================================================
+const checklistData = {
+  fertilizante: [
+    'Área em operação durante execução',
+    'Necessidade de parada de planta',
+    'Processo crítico em regime 24h',
+    'Equipamentos existentes identificados',
+    'Capacidade produtiva levantada',
+    'Produto corrosivo / higroscópico',
+    'Sistema de exaustão/filtro existente',
+    'Sistema pneumático existente',
+    'Sistema de automação/CLP existente',
+    'Integração com sistemas existentes necessária',
+    'Normas internas de segurança específicas',
+    'Integração de segurança obrigatória',
+    'Documentação técnica disponível',
+  ],
+  portuario: [
+    'Equipamento portuário identificado',
+    'Capacidade de carga levantada',
+    'Condição atual do equipamento avaliada',
+    'Acesso ao cais disponível',
+    'Necessidade de guindaste/Munk',
+    'Restrição de horário de operação',
+    'Integração com sistema de automação',
+    'Normas portuárias aplicáveis identificadas',
+    'NR 11 necessária (movimentação de cargas)',
+    'Trabalho em altura previsto',
+    'Proteções de segurança existentes',
+    'Permissão de trabalho obrigatória',
+  ],
+  mecanica: [
+    'Equipamentos/maquinários identificados',
+    'Necessidade de desmontagem',
+    'Necessidade de montagem',
+    'Caldeiraria / Solda prevista',
+    'Usinagem necessária',
+    'Alinhamento/balanceamento previsto',
+    'Testes mecânicos previstos',
+    'Comissionamento previsto',
+    'Necessidade de jateamento',
+    'Necessidade de pintura',
+    'Fornecimento de novos equipamentos',
+    'Projeto/desenho técnico necessário',
+    'ART de Engenharia necessária',
+    'Reforço estrutural identificado',
+  ],
+  eletrica: [
+    'Tensão elétrica disponível definida',
+    'Capacidade do QGBT suficiente',
+    'Necessidade de novos pontos elétricos',
+    'Infraestrutura elétrica existente avaliada',
+    'Sistema de automação existente (CLP)',
+    'Necessidade de integração com CLP',
+    'Instrumentação nova prevista',
+    'Rede industrial disponível',
+    'Laudo NR 10 necessário',
+    'Projeto de classificação de área',
+    'Projeto SPDA necessário',
+    'Projeto elétrico completo necessário',
+    'Medição de aterramento necessária',
+    'Área classificada (ex: ATEX)',
+  ],
+  civil: [
+    'Fundação existente no local',
+    'Capacidade do piso conhecida',
+    'Piso adequado para carga prevista',
+    'Estrutura metálica existente avaliada',
+    'Estrutura de concreto existente avaliada',
+    'Necessidade de reforço estrutural',
+    'Altura livre suficiente para execução',
+    'Projeto estrutural necessário',
+    'Memorial de cálculo necessário',
+    'ART Civil necessária',
+    'Fotos aéreas/drone necessárias',
+    'Interferências civis identificadas',
+  ],
+  agroquimico: [
+    'Produto químico identificado (ficha FISPQ)',
+    'Produto inflamável / explosivo',
+    'Área classificada (zona de risco)',
+    'EPIs específicos para o produto necessários',
+    'Treinamento NR 20 necessário',
+    'Sistema de contenção de derramamento',
+    'Ventilação adequada disponível',
+    'Normas ANVISA/MAPA aplicáveis',
+    'Projeto de adequação NR 12 necessário',
+    'Integração segurança obrigatória',
+    'Documentação de produto disponível',
+  ],
+  mineracao: [
+    'Tipo de minério/material identificado',
+    'Equipamento de lavra identificado',
+    'Estrutura de suporte existente',
+    'Necessidade de reforço/substituição',
+    'NR 22 aplicável (mineração)',
+    'Trabalho em altura previsto',
+    'Espaço confinado identificado',
+    'Poeira abrasiva presente',
+    'Vibração excessiva identificada',
+    'Guindaste/içamento necessário',
+    'Permissão de trabalho obrigatória',
+    'Integração de segurança obrigatória',
+  ],
+};
+
+
+const checklistGeral = [
+  'Área em operação durante execução',
+  'Operação em regime 24h',
+  'Necessidade de parada de planta',
+  'Processo produtivo crítico',
+  'Restrições de ruído',
+  'Restrições de poeira',
+  'Interferência com produção existente',
+  '--- SEGURANÇA ---',
+  'Integração de segurança obrigatória',
+  'EPIs específicos exigidos',
+  'Trabalho em altura',
+  'Espaço confinado',
+  'Permissão de Trabalho (PT) necessária',
+  'Normas internas do cliente a seguir',
+  'Exigências ambientais específicas',
+  '--- UTILIDADES ---',
+  'Energia elétrica disponível',
+  'Ar comprimido disponível',
+  'Vapor disponível',
+  'Água industrial disponível',
+  'Água potável disponível',
+  'Gases industriais disponíveis',
+  'Sistema de drenagem disponível',
+  'Tratamento de efluentes disponível',
+];
+
+
+const checklistLogistica = [
+  'Acesso para caminhões',
+  'Área para carga e descarga',
+  'Necessidade de guindaste',
+  'Capacidade de guindaste conhecida',
+  'Necessidade de Munk',
+  'Necessidade de empilhadeira',
+  'Área para armazenamento de materiais',
+  'Limitação de altura para içamento',
+  'Necessidade de PTA (Plataforma Tesoura Articulada)',
+  'Necessidade de andaime civil',
+  'Necessidade de andaime tubo/roll',
+  'Necessidade de containers/canteiro',
+];
+
+
+// ============================================================
+// RENDER CHECKLISTS
+// ============================================================
+function renderChecklist(containerId, items) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  items.forEach((item, i) => {
+    if (item.startsWith('---')) {
+      const divider = document.createElement('div');
+      divider.style.cssText = 'background:#f4faf6;padding:6px 14px;font-size:11px;font-weight:700;color:#3a7a4f;letter-spacing:1.5px;text-transform:uppercase;border-top:1px solid #e0ebe4;';
+      divider.textContent = item.replace(/---/g,'').trim();
+      container.appendChild(divider);
+      return;
+    }
+    const row = document.createElement('div');
+    row.className = 'check-row';
+    row.innerHTML = `
+      <div class="check-label">${item}</div>
+      <div class="check-opcoes"><button class="check-btn sim" onclick="toggleCheck(this,'sim')" title="Sim">S</button></div>
+      <div class="check-opcoes"><button class="check-btn nao" onclick="toggleCheck(this,'nao')" title="Não">N</button></div>
+      <div class="check-opcoes"><button class="check-btn na" onclick="toggleCheck(this,'na')" title="Não se aplica">—</button></div>
+    `;
+    container.appendChild(row);
+  });
+}
+
+
+function toggleCheck(btn, tipo) {
+  const row = btn.closest('.check-row');
+  row.querySelectorAll('.check-btn').forEach(b => b.classList.remove('ativo'));
+  btn.classList.add('ativo');
+  updateProgress();
+}
+
+
+// Inicializar todos os checklists
+renderChecklist('checks-fertilizante', checklistData.fertilizante);
+renderChecklist('checks-portuario', checklistData.portuario);
+renderChecklist('checks-mecanica', checklistData.mecanica);
+renderChecklist('checks-eletrica', checklistData.eletrica);
+renderChecklist('checks-civil', checklistData.civil);
+renderChecklist('checks-agroquimico', checklistData.agroquimico);
+renderChecklist('checks-mineracao', checklistData.mineracao);
+renderChecklist('checks-geral', checklistGeral);
+renderChecklist('checks-logistica', checklistLogistica);
+
+
+// ============================================================
+// TOGGLE ÁREA
+// ============================================================
+function toggleArea(chip) {
+  chip.classList.toggle('ativo');
+  const area = chip.dataset.area;
+  const cl = document.getElementById('cl-' + area);
+  if (cl) {
+    cl.classList.toggle('visivel');
+    if (cl.classList.contains('visivel')) {
+      setTimeout(() => {
+        cl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+  }
+  updateProgress();
+}
+
+
+// ============================================================
+// MATERIAIS
+// ============================================================
+let matId = 0;
+function addMaterial() {
+  matId++;
+  const lista = document.getElementById('materiais-lista');
+  const card = document.createElement('div');
+  card.className = 'item-card';
+  card.id = 'mat-' + matId;
+  card.innerHTML = `
+    <div class="item-card-header">
+      MATERIAL #${matId}
+      <button class="item-remover" onclick="removerItem('mat-${matId}')">✕ Remover</button>
+    </div>
+    <div class="grid-3">
+      <div class="campo-grupo" style="grid-column:1/3">
+        <label class="campo-label">Descrição do material *</label>
+        <input type="text" class="campo-input" name="mat-desc" placeholder="Ex: Chapa de aço carbono 3/16, Viga U 4&quot;, Tubo 2&quot;...">
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label">Quantidade</label>
+        <input type="text" class="campo-input" name="mat-qtd" placeholder="Ex: 10">
+      </div>
+    </div>
+    <div class="grid-3">
+      <div class="campo-grupo">
+        <label class="campo-label">Unidade</label>
+        <select class="campo-select" name="mat-unidade">
+          <option value="">Unidade...</option>
+          <option>un</option><option>m</option><option>m²</option><option>m³</option>
+          <option>kg</option><option>ton</option><option>barra</option><option>chapa</option>
+          <option>cj (conjunto)</option><option>L (litro)</option>
+        </select>
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label">Dimensão / Especificação</label>
+        <input type="text" class="campo-input" name="mat-dim" placeholder="Ex: 1200x3000mm, 1/4&quot;">
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label">Observação</label>
+        <input type="text" class="campo-input" name="mat-obs" placeholder="Detalhes extras">
+      </div>
+    </div>
+  `;
+  lista.appendChild(card);
+  updateProgress();
+}
+
+
+// ============================================================
+// MÃO DE OBRA
+// ============================================================
+let mdoId = 0;
+const funcoes = [
+  'Caldeireiro','Soldador','Mecânico Montador','Aux. Mecânico',
+  'Eletricista','Eletromecânico','Aux. Eletricista',
+  'Jatista','Pintor Industrial',
+  'Tec. Segurança','Encarregado','Líder de Equipe','Supervisor Industrial',
+  'Engenheiro de Segurança','Engenheiro Eletricista','Engenheiro Mecânico',
+  'Engenheiro de Automação','Engenheiro Civil','Projetista 3D'
+];
+
+
+function addMaodeObra() {
+  mdoId++;
+  const lista = document.getElementById('mdo-lista');
+  const card = document.createElement('div');
+  card.className = 'item-card';
+  card.id = 'mdo-' + mdoId;
+  const opcoesFunc = funcoes.map(f => `<option>${f}</option>`).join('');
+  card.innerHTML = `
+    <div class="item-card-header">
+      FUNÇÃO #${mdoId}
+      <button class="item-remover" onclick="removerItem('mdo-${mdoId}')">✕ Remover</button>
+    </div>
+    <div class="grid-3">
+      <div class="campo-grupo">
+        <label class="campo-label">Função *</label>
+        <select class="campo-select" name="mdo-funcao">
+          <option value="">Selecione...</option>
+          ${opcoesFunc}
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label">Qtd. de profissionais</label>
+        <input type="number" class="campo-input" name="mdo-qtd" placeholder="Ex: 2" min="1">
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label">Dias estimados</label>
+        <input type="number" class="campo-input" name="mdo-dias" placeholder="Ex: 30" min="1">
+      </div>
+    </div>
+    <div class="campo-grupo">
+      <label class="campo-label">Observação</label>
+      <input type="text" class="campo-input" name="mdo-obs" placeholder="Turno, horário específico, qualificação especial...">
+    </div>
+  `;
+  lista.appendChild(card);
+  updateProgress();
+}
+
+
+function removerItem(id) {
+  document.getElementById(id)?.remove();
+  updateProgress();
+}
+
+
+// ============================================================
+// FOTOS
+// ============================================================
+let fotosData = [];
+
+
+function addFotos(input) {
+  const files = Array.from(input.files);
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      fotosData.push({ name: file.name, data: e.target.result });
+      renderFotos();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+
+function renderFotos() {
+  const preview = document.getElementById('fotos-preview');
+  preview.innerHTML = '';
+  fotosData.forEach((f, i) => {
+    const div = document.createElement('div');
+    div.className = 'foto-thumb';
+    div.innerHTML = `
+      <img src="${f.data}" alt="${f.name}">
+      <button class="remover-foto" onclick="removerFoto(${i})">✕</button>
+    `;
+    preview.appendChild(div);
+  });
+}
+
+
+function removerFoto(i) {
+  fotosData.splice(i, 1);
+  renderFotos();
+}
+
+
+// ============================================================
+// ASSINATURA
+// ============================================================
+const canvas = document.getElementById('assinaturaCanvas');
+const ctx = canvas.getContext('2d');
+let isDrawing = false;
+let assinado = false;
+
+
+function getPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  if (e.touches) {
+    return {
+      x: (e.touches[0].clientX - rect.left) * scaleX,
+      y: (e.touches[0].clientY - rect.top) * scaleY
+    };
+  }
+  return {
+    x: (e.clientX - rect.left) * scaleX,
+    y: (e.clientY - rect.top) * scaleY
+  };
+}
+
+
+canvas.addEventListener('mousedown', e => { isDrawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
+canvas.addEventListener('mousemove', e => { if (!isDrawing) return; const p = getPos(e); ctx.lineWidth = 2; ctx.strokeStyle = '#1a3320'; ctx.lineCap = 'round'; ctx.lineTo(p.x, p.y); ctx.stroke(); assinado = true; });
+canvas.addEventListener('mouseup', () => isDrawing = false);
+canvas.addEventListener('touchstart', e => { e.preventDefault(); isDrawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }, { passive: false });
+canvas.addEventListener('touchmove', e => { e.preventDefault(); if (!isDrawing) return; const p = getPos(e); ctx.lineWidth = 2.5; ctx.strokeStyle = '#1a3320'; ctx.lineCap = 'round'; ctx.lineTo(p.x, p.y); ctx.stroke(); assinado = true; }, { passive: false });
+canvas.addEventListener('touchend', () => isDrawing = false);
+
+
+function limparAssinatura() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  assinado = false;
+}
+
+
+// ============================================================
+// PROGRESS
+// ============================================================
+function updateProgress() {
+  const obrig = document.querySelectorAll('[id="cliente"],[id="unidade"],[id="endereco"],[id="dataVisita"],[id="respMelt"],[id="emailResp"],[id="contatoCliente"],[id="descricao"]');
+  let filled = 0;
+  obrig.forEach(el => { if (el.value.trim()) filled++; });
+  const pct = Math.round((filled / obrig.length) * 80);
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+
+document.querySelectorAll('.campo-input, .campo-textarea, .campo-select').forEach(el => {
+  el.addEventListener('input', updateProgress);
+});
+
+
+// ============================================================
+// COLETA DE CHECKLISTS
+// ============================================================
+function coletarChecklists() {
+  const resultado = {};
+
+
+  // Áreas ativas
+  const areasAtivas = [...document.querySelectorAll('.area-chip.ativo')].map(c => c.dataset.area);
+  resultado.areas = areasAtivas.join(', ') || '—';
+
+
+  // Checklist por área
+  areasAtivas.forEach(area => {
+    const container = document.getElementById('checks-' + area);
+    if (!container) return;
+    const rows = container.querySelectorAll('.check-row');
+    const itens = [];
+    rows.forEach(row => {
+      const label = row.querySelector('.check-label')?.textContent;
+      const ativo = row.querySelector('.check-btn.ativo');
+      if (label && ativo) {
+        const opcao = ativo.classList.contains('sim') ? 'Sim' : ativo.classList.contains('nao') ? 'Não' : 'N/A';
+        itens.push(`${label}: ${opcao}`);
+      }
+    });
+    resultado['cl_' + area] = itens.join(' | ') || '—';
+  });
+
+
+  // Checklist geral
+  const geralRows = document.querySelectorAll('#checks-geral .check-row');
+  const geralItens = [];
+  geralRows.forEach(row => {
+    const label = row.querySelector('.check-label')?.textContent;
+    const ativo = row.querySelector('.check-btn.ativo');
+    if (label && ativo) {
+      const opcao = ativo.classList.contains('sim') ? 'Sim' : ativo.classList.contains('nao') ? 'Não' : 'N/A';
+      geralItens.push(`${label}: ${opcao}`);
+    }
+  });
+  resultado.cl_geral = geralItens.join(' | ') || '—';
+
+
+  // Logística
+  const logRows = document.querySelectorAll('#checks-logistica .check-row');
+  const logItens = [];
+  logRows.forEach(row => {
+    const label = row.querySelector('.check-label')?.textContent;
+    const ativo = row.querySelector('.check-btn.ativo');
+    if (label && ativo) {
+      const opcao = ativo.classList.contains('sim') ? 'Sim' : ativo.classList.contains('nao') ? 'Não' : 'N/A';
+      logItens.push(`${label}: ${opcao}`);
+    }
+  });
+  resultado.cl_logistica = logItens.join(' | ') || '—';
+
+
+  return resultado;
+}
+
+
+function coletarMateriais() {
+  const cards = document.querySelectorAll('[id^="mat-"]');
+  if (!cards.length) return '—';
+  const linhas = [];
+  cards.forEach((card, i) => {
+    const desc = card.querySelector('[name="mat-desc"]')?.value || '';
+    const qtd = card.querySelector('[name="mat-qtd"]')?.value || '';
+    const un = card.querySelector('[name="mat-unidade"]')?.value || '';
+    const dim = card.querySelector('[name="mat-dim"]')?.value || '';
+    const obs = card.querySelector('[name="mat-obs"]')?.value || '';
+    linhas.push(`Item ${i+1}: ${desc} | Qtd: ${qtd} ${un}${dim?' | '+dim:''}${obs?' | Obs: '+obs:''}`);
+  });
+  return linhas.join('\n');
+}
+
+
+function coletarMaodeObra() {
+  const cards = document.querySelectorAll('[id^="mdo-"]');
+  if (!cards.length) return '—';
+  const linhas = [];
+  cards.forEach((card, i) => {
+    const func = card.querySelector('[name="mdo-funcao"]')?.value || '';
+    const qtd = card.querySelector('[name="mdo-qtd"]')?.value || '';
+    const dias = card.querySelector('[name="mdo-dias"]')?.value || '';
+    const obs = card.querySelector('[name="mdo-obs"]')?.value || '';
+    linhas.push(`${i+1}. ${func} | ${qtd} profissional(is) | ${dias} dias${obs?' | '+obs:''}`);
+  });
+  return linhas.join('\n');
+}
+
+
+// ============================================================
+// ENVIO
+// ============================================================
+async function enviarFormulario() {
+  // Validação
+  const obrigatorios = ['cliente','unidade','endereco','dataVisita','respMelt','emailResp','contatoCliente','descricao'];
+  let valido = true;
+  obrigatorios.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) {
+      el.classList.add('erro');
+      valido = false;
+    } else {
+      el.classList.remove('erro');
+    }
+  });
+
+
+  if (!valido) {
+    alert('⚠️ Preencha todos os campos obrigatórios marcados em vermelho.');
+    return;
+  }
+
+
+  const btn = document.getElementById('btnEnviar');
+  btn.disabled = true;
+  btn.textContent = '⏳ Enviando...';
+
+
+  const checklists = coletarChecklists();
+  const ts = new Date().toLocaleString('pt-BR');
+
+
+  const params = {
+    cliente: document.getElementById('cliente').value,
+    unidade: document.getElementById('unidade').value,
+    endereco: document.getElementById('endereco').value,
+    data_visita: document.getElementById('dataVisita').value,
+    resp_melt: document.getElementById('respMelt').value,
+    email_resp: document.getElementById('emailResp').value,
+    contato_cliente: document.getElementById('contatoCliente').value,
+    tel_contato: document.getElementById('telContato').value || '—',
+    areas: checklists.areas,
+    cl_geral: checklists.cl_geral,
+    cl_logistica: checklists.cl_logistica,
+    cl_fertilizante: checklists.cl_fertilizante || '—',
+    cl_portuario: checklists.cl_portuario || '—',
+    cl_mecanica: checklists.cl_mecanica || '—',
+    cl_eletrica: checklists.cl_eletrica || '—',
+    cl_civil: checklists.cl_civil || '—',
+    cl_agroquimico: checklists.cl_agroquimico || '—',
+    cl_mineracao: checklists.cl_mineracao || '—',
+    outros_riscos: document.getElementById('outrosRiscos').value || '—',
+    cap_guindaste: document.getElementById('cap-guindaste').value || '—',
+    altura_livre: document.getElementById('altura-livre').value || '—',
+    restr_horario: document.getElementById('restr-horario').value || '—',
+    materiais: coletarMateriais(),
+    maodeobra: coletarMaodeObra(),
+    descricao: document.getElementById('descricao').value,
+    tempo_exec: document.getElementById('tempo-exec').value || '—',
+    regime: document.getElementById('regime').value || '—',
+    pendencias: document.getElementById('pendencias').value || '—',
+    observacoes: document.getElementById('observacoes').value || '—',
+    timestamp: ts,
+    // campos específicos fertilizante
+    fert_equipamento: document.getElementById('fert-equipamento')?.value || '—',
+    fert_capacidade: document.getElementById('fert-capacidade')?.value || '—',
+    fert_produto: document.getElementById('fert-produto')?.value || '—',
+    fert_ambiente: document.getElementById('fert-ambiente')?.value || '—',
+    fert_normas: document.getElementById('fert-normas')?.value || '—',
+    mec_servico: document.getElementById('mec-servico')?.value || '—',
+    mec_equipamento: document.getElementById('mec-equipamento')?.value || '—',
+    port_equipamento: document.getElementById('port-equipamento')?.value || '—',
+    port_capacidade: document.getElementById('port-capacidade')?.value || '—',
+    port_carga: document.getElementById('port-carga')?.value || '—',
+  };
+
+  try {
+    const res = await fetch('/.netlify/functions/enviar-visita', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ dados: params, fotos: fotosData })
+    });
+
+    if (!res.ok) throw new Error('Erro HTTP ' + res.status);
+
+    document.getElementById('progressFill').style.width = '100%';
+    showToast();
+    setTimeout(() => { btn.textContent = '✅ Enviado!'; }, 500);
+  } catch(e) {
+    console.error(e);
+    btn.disabled = false;
+    btn.textContent = '📤 ENVIAR CHECKLIST';
+    alert('❌ Erro ao enviar. Verifique sua conexão e tente novamente.');
+  }
+}
+
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+
+// Init
+document.getElementById('dataVisita').valueAsDate = new Date();
+updateProgress();
+</script>
+</body>
